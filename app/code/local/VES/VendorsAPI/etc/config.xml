@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <VES_VendorsAPI>
+            <version>1.0.1</version>
+        </VES_VendorsAPI>
+    </modules>
+    <frontend>
+        <routers>
+            <vendorsapi>
+                <use>standard</use>
+                <args>
+                    <module>VES_VendorsAPI</module>
+                    <frontName>vendorsapi</frontName>
+                </args>
+            </vendorsapi>
+            <vendors>
+                <args>
+                    <modules>
+                        <vendorsapi before="VES_Vendors">VES_VendorsAPI_Vendor</vendorsapi>
+                    </modules>
+                </args>
+            </vendors>
+        </routers>
+        <layout>
+            <updates>
+                <vendorsapi>
+                    <file>ves_vendors/api.xml</file>
+                </vendorsapi>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <VES_VendorsAPI>
+                    <files>
+                        <VES_VendorsAPI>VES_VendorsAPI.csv</VES_VendorsAPI>
+                    </files>
+                </VES_VendorsAPI>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <vendorsapi before="Mage_Adminhtml">VES_VendorsAPI_Adminhtml</vendorsapi>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <VES_VendorsAPI>
+                    <files>
+                        <VES_VendorsAPI>VES_VendorsAPI.csv</VES_VendorsAPI>
+                    </files>
+                </VES_VendorsAPI>
+            </modules>
+        </translate>
+        <menu>
+            <vendors>
+                <children>
+
+                </children>
+            </vendors>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <vendors>
+
+                        </vendors>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <vendorsapi>
+                    <file>ves_vendors/api.xml</file>
+                </vendorsapi>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <vendors>
+        <menu>
+
+        </menu>
+    </vendors>
+
+
+    <global>
+        <events>
+            <!--<adminhtml_vendor_save_after>
+                <observers>
+                    <vendorsbarea>
+                        <class>vendorsrfq/observer</class>
+                        <method>adminhtml_vendor_save_after</method>
+                    </vendorsbarea>
+                </observers>
+            </adminhtml_vendor_save_after>-->
+            <!-- <controller_action_predispatch>
+                 <observers>
+                     <vendorsbarea>
+                         <class>vendorsrfq/observer</class>
+                         <method>controller_action_predispatch</method>
+                     </vendorsbarea>
+                 </observers>
+             </controller_action_predispatch>-->
+
+            <vendor_save_before>
+                <observers>
+                    <vendorsapi>
+                        <class>vendorsapi/observer</class>
+                        <method>vendor_save_before</method>
+                    </vendorsapi>
+                </observers>
+            </vendor_save_before>
+        </events>
+
+        <models>
+            <vendorsapi>
+                <class>VES_VendorsAPI_Model</class>
+                <resourceModel>vendorsapi_resource</resourceModel>
+            </vendorsapi>
+            <vendorsapi_resource>
+                <class>VES_VendorsAPI_Model_Resource</class>
+            </vendorsapi_resource>
+        </models>
+        <resources>
+            <vendorsapi_setup>
+                <setup>
+                    <module>VES_VendorsAPI</module>
+                    <class>VES_VendorsAPI_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </vendorsapi_setup>
+            <vendorsapi_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </vendorsapi_write>
+            <vendorsapi_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </vendorsapi_read>
+        </resources>
+        <blocks>
+            <vendorsapi>
+                <class>VES_VendorsAPI_Block</class>
+            </vendorsapi>
+        </blocks>
+        <helpers>
+            <vendorsapi>
+                <class>VES_VendorsAPI_Helper</class>
+            </vendorsapi>
+        </helpers>
+    </global>
+
+    <default>
+
+    </default>
+</config>

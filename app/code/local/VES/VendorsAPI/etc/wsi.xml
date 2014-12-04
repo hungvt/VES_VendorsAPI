@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="{{var wsdl.name}}"
+                  targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <xsd:complexType name="vendorVendorEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="vendor_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="firstname" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="lastname" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="credit" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="website_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="created_at" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="group_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="title" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="company" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="telephone" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="address" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="city" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="region" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="postcode" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="facebook" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="twitter" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="country_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="ves_api_key" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="vendorVendorEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:vendorVendorEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="vendorVendorCreateProductEntity">
+                <xsd:sequence>
+                    <xsd:element name="categories" type="typens:ArrayOfString" minOccurs="0"/>
+                    <xsd:element name="websites" type="typens:ArrayOfString" minOccurs="0"/>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="short_description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="weight" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="url_key" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="url_path" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="visibility" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="category_ids" type="typens:ArrayOfString" minOccurs="0"/>
+                    <xsd:element name="website_ids" type="typens:ArrayOfString" minOccurs="0"/>
+                    <xsd:element name="has_options" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="gift_message_available" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="price" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="special_price" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="special_from_date" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="special_to_date" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="tax_class_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="tier_price" type="typens:catalogProductTierPriceEntityArray" minOccurs="0"/>
+                    <xsd:element name="meta_title" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta_keyword" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="meta_description" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="custom_design" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="custom_layout_update" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="options_container" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="additional_attributes" type="typens:associativeArray" minOccurs="0" />
+                    <xsd:element name="stock_data" type="typens:catalogInventoryStockItemUpdateEntity" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="vendorVendorCreateProductEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:vendorVendorCreateProductEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="vendorVendorListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="filters" type="typens:filters" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:vendorVendorEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorInfoRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="vendorApiKey" type="xsd:int" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="attributes" type="typens:ArrayOfString" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:vendorVendorEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorCreateProductRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="type" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="set" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sku" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productData" type="typens:vendorVendorCreateProductEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorCreateProductResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:int" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorUpdateProductRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productData" type="typens:vendorVendorCreateProductEntity" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="identifierType" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorUpdateProductResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorDeleteProductRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productId" type="xsd:string" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="identifierType" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vendorVendorDeleteProductResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:int" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="vendorVendorListRequest">
+        <wsdl:part name="parameters" element="typens:vendorVendorListRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorListResponse">
+        <wsdl:part name="parameters" element="typens:vendorVendorListResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorInfoRequest">
+        <wsdl:part name="parameters" element="typens:vendorVendorInfoRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorInfoResponse">
+        <wsdl:part name="parameters" element="typens:vendorVendorInfoResponseParam" />
+    </wsdl:message>
+
+    <wsdl:message name="vendorVendorCreateProductRequest">
+        <wsdl:part name="parameters" element="typens:vendorVendorCreateProductRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorCreateProductResponse">
+        <wsdl:part name="parameters" element="typens:vendorVendorCreateProductResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorUpdateProductRequest">
+        <wsdl:part name="parameters" element="typens:vendorVendorUpdateProductRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorUpdateProductResponse">
+        <wsdl:part name="parameters" element="typens:vendorVendorUpdateProductResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorDeleteProductRequest">
+        <wsdl:part name="parameters" element="typens:vendorVendorDeleteProductRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="vendorVendorDeleteProductResponse">
+        <wsdl:part name="parameters" element="typens:vendorVendorDeleteProductResponseParam" />
+    </wsdl:message>
+
+
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="vendorVendorList">
+            <wsdl:documentation>Retrieve vendors</wsdl:documentation>
+            <wsdl:input message="typens:vendorVendorListRequest" />
+            <wsdl:output message="typens:vendorVendorListResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="vendorVendorInfo">
+            <wsdl:documentation>Retrieve vendor data</wsdl:documentation>
+            <wsdl:input message="typens:vendorVendorInfoRequest" />
+            <wsdl:output message="typens:vendorVendorInfoResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="vendorVendorList">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="vendorVendorInfo">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

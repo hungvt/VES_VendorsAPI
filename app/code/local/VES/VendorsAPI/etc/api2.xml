@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<config>
+    <api2>
+        <resource_groups>
+            <vendor translate="title" module="api2">
+                <title>Vendors API</title>
+                <sort_order>1000</sort_order>
+            </vendor>
+        </resource_groups>
+        <resources>
+            <vendor translate="title" module="api2">
+                <group>vendor</group>
+                <sort_order>90</sort_order>
+                <model>vendorsapi/api2_vendor</model>
+                <title>Vendor</title>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                        <create>1</create>
+                    </admin>
+                    <customer>
+                        <retrieve>1</retrieve>
+                        <update>0</update>
+                        <delete>0</delete>
+                        <create>0</create>
+                    </customer>
+                    <!--<guest>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                        <create>1</create>
+                    </guest>-->
+                </privileges>
+                <attributes
+                        translate="entity_id city region postcode facebook twitter country_id firstname lastname email website_id created_in group_id title company telephone address"
+                        module="api2">
+                    <entity_id>Entity ID</entity_id>
+                    <vendor_id>Vendor ID</vendor_id>
+                    <firstname>First Name</firstname>
+                    <lastname>Last Name</lastname>
+                    <email>Email</email>
+                    <credit>Credit</credit>
+                    <website_id>Associate to Website</website_id>
+                    <created_at>Created From</created_at>
+                    <group_id>Group</group_id>
+                    <title>Title</title>
+                    <company>Company</company>
+                    <telephone>Telephone</telephone>
+                    <address>Address</address>
+                    <city>City</city>
+                    <region>Region</region>
+                    <postcode>Post Code</postcode>
+                    <facebook>Facebook</facebook>
+                    <twitter>Twitter</twitter>
+                    <country_id>Country ID</country_id>
+                    <ves_api_key>API Key</ves_api_key>
+                </attributes>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <entity_id>1</entity_id>
+                            <created_at>1</created_at>
+                        </write>
+                    </admin>
+                    <customer>
+                        <read>
+                            <entity_id>1</entity_id>
+                            <website_id>1</website_id>
+                            <created_at>1</created_at>
+                            <group_id>1</group_id>
+                        </read>
+                        <write>
+                            <entity_id>1</entity_id>
+                            <website_id>1</website_id>
+                            <group_id>1</group_id>
+                            <created_at>1</created_at>
+                            <credit>1</credit>
+                        </write>
+                    </customer>
+                </exclude_attributes>
+                <!--<validators>
+                    <eav>
+                        <admin>
+                            <entity_model>customer/customer</entity_model>
+                            <form_model>customer/form</form_model>
+                            <form_code>
+                                <update>adminhtml_customer</update>
+                            </form_code>
+                        </admin>
+                        <customer>
+                            <entity_model>customer/customer</entity_model>
+                            <form_model>customer/form</form_model>
+                            <form_code>
+                                <update>customer_account_edit</update>
+                            </form_code>
+                        </customer>
+                    </eav>
+                </validators>-->
+                <routes>
+                    <route_entity>
+                        <route>/vendors/:api</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/vendors</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </vendor>
+            <vendor_product translate="title" module="api2">
+                <group>vendor</group>
+                <sort_order>200</sort_order>
+                <model>vendorsapi/api2_vendor_product</model>
+                <working_model>catalog/product</working_model>
+                <title>Vendor Product</title>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <create>1</create>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </customer>
+                </privileges>
+                <attributes translate="weight entity_id type_id attribute_set_id stock_data image_url is_saleable total_reviews_count url buy_now_url has_custom_options is_in_stock regular_price_with_tax regular_price_without_tax final_price_with_tax final_price_without_tax use_config_gift_message_available use_config_gift_wrapping_available url_key_create_redirect" module="api2">
+                    <entity_id>Product ID</entity_id>
+                    <!--<visibility>Visibility</visibility>
+                    <status>Status</status>
+                    <price>Price</price>
+                    <tax_class_id>Tax Class</tax_class_id>-->
+                    <type_id>Product Type</type_id>
+                    <weight>Weight</weight>
+                    <attribute_set_id>Attribute Set</attribute_set_id>
+                    <stock_data>Inventory Data</stock_data>
+                    <image_url>Default Image</image_url>
+                    <is_saleable>Salability Status</is_saleable>
+                    <total_reviews_count>Total Reviews Count</total_reviews_count>
+                    <url>Product URL</url>
+                    <buy_now_url>Buy Now URL</buy_now_url>
+                    <has_custom_options>Has Custom Options</has_custom_options>
+                    <is_in_stock>Stock Status</is_in_stock>
+                    <regular_price_with_tax>Regular Price With Tax</regular_price_with_tax>
+                    <regular_price_without_tax>Regular Price Without Tax</regular_price_without_tax>
+                    <final_price_with_tax>Final Price With Tax</final_price_with_tax>
+                    <final_price_without_tax>Final Price Without Tax</final_price_without_tax>
+                    <use_config_gift_message_available>Use Config Settings for Allow Gift Message</use_config_gift_message_available>
+                    <use_config_gift_wrapping_available>Use Config Settings for Allow Gift Wrapping</use_config_gift_wrapping_available>
+                    <url_key_create_redirect>Create Permanent Redirect for old URL</url_key_create_redirect>
+
+<!--                    <manufacturer>Manufacturer</manufacturer>
+                    <color>Color</color>
+                    <country_of_manufacturer>Country of Manufacturer</country_of_manufacturer>
+                    <news_from_date>Set Product as New from Date</news_from_date>
+                    <news_to_date>Set Product as News to Date</news_to_date>
+                    <special_from_date>Special Price From Date</special_from_date>
+                    <special_to_date>Special Price To Date</special_to_date>
+                    <special_price>Special Price</special_price>
+                    <msrp>Manufacturer's Suggested Retail Price</msrp>
+                    <cost>Cost</cost>-->
+                </attributes>
+                <exclude_attributes>
+                    <customer>
+                        <read>
+                            <allow_open_amount>1</allow_open_amount>
+                            <giftcard_amounts>1</giftcard_amounts>
+                            <sku>1</sku>
+                            <open_amount_min>1</open_amount_min>
+                            <open_amount_max>1</open_amount_max>
+                            <image>1</image>
+                            <is_recurring>1</is_recurring>
+                            <gallery>1</gallery>
+                            <media_gallery>1</media_gallery>
+                            <price_view>1</price_view>
+                            <small_image>1</small_image>
+                            <image_url>1</image_url>
+                            <is_saleable>1</is_saleable>
+                            <total_reviews_count>1</total_reviews_count>
+                            <url>1</url>
+                            <buy_now_url>1</buy_now_url>
+                            <has_custom_options>1</has_custom_options>
+                            <is_in_stock>1</is_in_stock>
+                            <regular_price_with_tax>1</regular_price_with_tax>
+                            <regular_price_without_tax>1</regular_price_without_tax>
+                            <final_price_with_tax>1</final_price_with_tax>
+                            <final_price_without_tax>1</final_price_without_tax>
+                            <recurring_profile>1</recurring_profile>
+                            <thumbnail>1</thumbnail>
+                            <url_key_create_redirect>1</url_key_create_redirect>
+                        </read>
+                        <write>
+                            <vendor_id>1</vendor_id>
+                            <approval>1</approval>
+                            <allow_open_amount>1</allow_open_amount>
+                            <giftcard_amounts>1</giftcard_amounts>
+                            <open_amount_min>1</open_amount_min>
+                            <open_amount_max>1</open_amount_max>
+                            <image>1</image>
+                            <is_recurring>1</is_recurring>
+                            <gallery>1</gallery>
+                            <media_gallery>1</media_gallery>
+                            <price_view>1</price_view>
+                            <small_image>1</small_image>
+                            <image_url>1</image_url>
+                            <is_saleable>1</is_saleable>
+                            <total_reviews_count>1</total_reviews_count>
+                            <url>1</url>
+                            <buy_now_url>1</buy_now_url>
+                            <has_custom_options>1</has_custom_options>
+                            <is_in_stock>1</is_in_stock>
+                            <regular_price_with_tax>1</regular_price_with_tax>
+                            <regular_price_without_tax>1</regular_price_without_tax>
+                            <final_price_with_tax>1</final_price_with_tax>
+                            <final_price_without_tax>1</final_price_without_tax>
+                            <recurring_profile>1</recurring_profile>
+                            <thumbnail>1</thumbnail>
+                            <entity_id>1</entity_id>
+                        </write>
+                    </customer>
+                    <admin>
+                        <read>
+                            <allow_open_amount>1</allow_open_amount>
+                            <giftcard_amounts>1</giftcard_amounts>
+                            <open_amount_min>1</open_amount_min>
+                            <open_amount_max>1</open_amount_max>
+                            <image>1</image>
+                            <is_recurring>1</is_recurring>
+                            <gallery>1</gallery>
+                            <media_gallery>1</media_gallery>
+                            <price_view>1</price_view>
+                            <small_image>1</small_image>
+                            <image_url>1</image_url>
+                            <is_saleable>1</is_saleable>
+                            <total_reviews_count>1</total_reviews_count>
+                            <url>1</url>
+                            <buy_now_url>1</buy_now_url>
+                            <has_custom_options>1</has_custom_options>
+                            <is_in_stock>1</is_in_stock>
+                            <regular_price_with_tax>1</regular_price_with_tax>
+                            <regular_price_without_tax>1</regular_price_without_tax>
+                            <final_price_with_tax>1</final_price_with_tax>
+                            <final_price_without_tax>1</final_price_without_tax>
+                            <recurring_profile>1</recurring_profile>
+                            <thumbnail>1</thumbnail>
+                            <url_key_create_redirect>1</url_key_create_redirect>
+                        </read>
+                        <write>
+                            <allow_open_amount>1</allow_open_amount>
+                            <giftcard_amounts>1</giftcard_amounts>
+                            <open_amount_min>1</open_amount_min>
+                            <open_amount_max>1</open_amount_max>
+                            <image>1</image>
+                            <is_recurring>1</is_recurring>
+                            <gallery>1</gallery>
+                            <media_gallery>1</media_gallery>
+                            <price_view>1</price_view>
+                            <small_image>1</small_image>
+                            <image_url>1</image_url>
+                            <is_saleable>1</is_saleable>
+                            <total_reviews_count>1</total_reviews_count>
+                            <url>1</url>
+                            <buy_now_url>1</buy_now_url>
+                            <has_custom_options>1</has_custom_options>
+                            <is_in_stock>1</is_in_stock>
+                            <regular_price_with_tax>1</regular_price_with_tax>
+                            <regular_price_without_tax>1</regular_price_without_tax>
+                            <final_price_with_tax>1</final_price_with_tax>
+                            <final_price_without_tax>1</final_price_without_tax>
+                            <recurring_profile>1</recurring_profile>
+                            <thumbnail>1</thumbnail>
+                            <entity_id>1</entity_id>
+                        </write>
+                    </admin>
+                </exclude_attributes>
+                <routes>
+                    <route_collection>
+                        <route>/vendors/:api/products</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_entity>
+                        <route>/vendors/:api/products/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                </routes>
+                <versions>1</versions>
+            </vendor_product>
+            <vendor_product_category translate="title" module="api2">
+                <group>vendor</group>
+                <model>vendorsapi/api2_vendor_product_category</model>
+                <working_model>catalog/category</working_model>
+                <title>Vendor Product Category</title>
+                <sort_order>300</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <create>1</create>
+                        <delete>1</delete>
+                    </customer>
+                </privileges>
+                <attributes translate="category_id" module="api2">
+                    <category_id>Category ID</category_id>
+                </attributes>
+                <routes>
+                    <route_collection>
+                        <route>/vendors/:api/products/:id/categories</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_entity>
+                        <route>/vendors/:api/products/:id/categories/:category_id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                </routes>
+                <validators>
+                    <fields>
+                        <category_id>
+                            <required>1</required>
+                            <int translate="message" module="api2">
+                                <type>Int</type>
+                                <message>Please use numbers only in "category_id" field.</message>
+                            </int>
+                        </category_id>
+                    </fields>
+                </validators>
+                <versions>1</versions>
+            </vendor_product_category>
+
+            <vendor_product_image translate="title" module="api2">
+                <group>vendor</group>
+                <model>vendorsapi/api2_vendor_product_image</model>
+                <title>Vendor Product Image</title>
+                <sort_order>400</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </customer>
+                </privileges>
+                <attributes translate="id file_name file_content file_mime_type label position types exclude url" module="api2">
+                    <id>ID</id>
+                    <file_name>File Name</file_name>
+                    <file_content>File Content</file_content>
+                    <file_mime_type>File MIME Type</file_mime_type>
+                    <label>Label</label>
+                    <position>Position</position>
+                    <types>Type</types>
+                    <exclude>Exclude</exclude>
+                    <url>URL</url>
+                </attributes>
+                <exclude_attributes>
+                    <customer>
+                        <read>
+                            <file_name>1</file_name>
+                            <file_content>1</file_content>
+                            <file_mime_type>1/</file_mime_type>
+                            <exclude>0/</exclude>
+                        </read>
+                        <write>
+                            <id>1</id>
+                            <url>1</url>
+                        </write>
+                    </customer>
+                    <admin>
+                        <read>
+                            <file_name>1</file_name>
+                            <file_content>1</file_content>
+                            <file_mime_type>1/</file_mime_type>
+                        </read>
+                        <write>
+                            <id>1</id>
+                            <url>1</url>
+                        </write>
+                    </admin>
+                </exclude_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/vendors/:api/products/:id/images/:image</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/vendors/:api/products/:id/images</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </vendor_product_image>
+        </resources>
+    </api2>
+</config>
