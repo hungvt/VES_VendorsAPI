@@ -95,7 +95,8 @@ class VES_VendorsAPI_Model_Api_Resource extends Mage_Api_Model_Resource_Abstract
         if ($vendor->getEntityId()) {
             $product = $this->_getProduct($productId, $this->_getStoreId($vendor->getStoreId()), $identifierType);
             if ($product->getId() != null) {
-                if ($product->getVendorId() != $vendor->getVendorId()) $this->_fault('vendor_not_change');
+                Mage::log($product->getVendorId());
+                if ($product->getVendorId() != $vendor->getId()) $this->_fault('vendor_not_change');
             }
         }
     }

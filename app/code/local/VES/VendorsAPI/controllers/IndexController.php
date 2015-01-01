@@ -92,6 +92,9 @@ class VES_VendorsAPI_IndexController extends Mage_Core_Controller_Front_Action
 
     public function getAction()
     {
-        var_dump(Mage::getModel('vendors/vendor')->load('2')->getData());
+        //var_dump(Mage::getModel('vendors/vendor')->load('2')->getData());
+        $obj = Mage::getModel('sales/order')->loadByIncrementId('100000090');
+
+        var_dump($obj->getId());
     }
 }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"
+                    schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="vendorVendorEntity">
+                <all>
+                    <element name="entity_id" type="xsd:int" minOccurs="0"/>
+                    <element name="vendor_id" type="xsd:string" minOccurs="0"/>
+                    <element name="firstname" type="xsd:string" minOccurs="0"/>
+                    <element name="lastname" type="xsd:string" minOccurs="0"/>
+                    <element name="email" type="xsd:string" minOccurs="0"/>
+                    <element name="credit" type="xsd:string" minOccurs="0"/>
+                    <element name="website_id" type="xsd:string" minOccurs="0"/>
+                    <element name="created_at" type="xsd:string" minOccurs="0"/>
+                    <element name="group_id" type="xsd:string" minOccurs="0"/>
+                    <element name="title" type="xsd:string" minOccurs="0"/>
+                    <element name="company" type="xsd:string" minOccurs="0"/>
+                    <element name="telephone" type="xsd:string" minOccurs="0"/>
+                    <element name="address" type="xsd:string" minOccurs="0"/>
+                    <element name="city" type="xsd:string" minOccurs="0"/>
+                    <element name="region" type="xsd:string" minOccurs="0"/>
+                    <element name="postcode" type="xsd:string" minOccurs="0"/>
+                    <element name="facebook" type="xsd:string" minOccurs="0"/>
+                    <element name="twitter" type="xsd:string" minOccurs="0"/>
+                    <element name="country_id" type="xsd:string" minOccurs="0"/>
+                    <element name="ves_api_key" type="xsd:string" minOccurs="0"/>
+                </all>
+            </complexType>
+            <complexType name="vendorVendorEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:vendorVendorEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="catalogProductCreateEntity">
+                <all>
+                    <element name="categories" type="typens:ArrayOfString" minOccurs="0"/>
+                    <element name="websites" type="typens:ArrayOfString" minOccurs="0"/>
+                    <element name="name" type="xsd:string" minOccurs="0"/>
+                    <element name="description" type="xsd:string" minOccurs="0"/>
+                    <element name="short_description" type="xsd:string" minOccurs="0"/>
+                    <element name="weight" type="xsd:string" minOccurs="0"/>
+                    <element name="status" type="xsd:string" minOccurs="0"/>
+                    <element name="url_key" type="xsd:string" minOccurs="0"/>
+                    <element name="url_path" type="xsd:string" minOccurs="0"/>
+                    <element name="visibility" type="xsd:string" minOccurs="0"/>
+                    <element name="category_ids" type="typens:ArrayOfString" minOccurs="0"/>
+                    <element name="website_ids" type="typens:ArrayOfString" minOccurs="0"/>
+                    <element name="has_options" type="xsd:string" minOccurs="0"/>
+                    <element name="gift_message_available" type="xsd:string" minOccurs="0"/>
+                    <element name="price" type="xsd:string" minOccurs="0"/>
+                    <element name="special_price" type="xsd:string" minOccurs="0"/>
+                    <element name="special_from_date" type="xsd:string" minOccurs="0"/>
+                    <element name="special_to_date" type="xsd:string" minOccurs="0"/>
+                    <element name="tax_class_id" type="xsd:string" minOccurs="0"/>
+                    <element name="tier_price" type="typens:catalogProductTierPriceEntityArray" minOccurs="0"/>
+                    <element name="meta_title" type="xsd:string" minOccurs="0"/>
+                    <element name="meta_keyword" type="xsd:string" minOccurs="0"/>
+                    <element name="meta_description" type="xsd:string" minOccurs="0"/>
+                    <element name="custom_design" type="xsd:string" minOccurs="0"/>
+                    <element name="custom_layout_update" type="xsd:string" minOccurs="0"/>
+                    <element name="options_container" type="xsd:string" minOccurs="0"/>
+                    <element name="additional_attributes" type="typens:catalogProductAdditionalAttributesEntity" minOccurs="0"/>
+                    <element name="stock_data" type="typens:catalogInventoryStockItemUpdateEntity" minOccurs="0" />
+                </all>
+            </complexType>
+        </schema>
+    </types>
+    <message name="vendorVendorListRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="filters" type="typens:filters"/>
+    </message>
+    <message name="vendorVendorListResponse">
+        <part name="storeView" type="typens:vendorVendorEntityArray"/>
+    </message>
+    <message name="vendorVendorInfoRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="vendorApiKey" type="xsd:string"/>
+        <part name="attributes" type="typens:ArrayOfString"/>
+    </message>
+    <message name="vendorVendorInfoResponse">
+        <part name="vendorInfo" type="typens:vendorVendorEntity"/>
+    </message>
+    <portType name="{{var wsdl.handler}}PortType">
+        <operation name="vendorVendorList">
+            <documentation>Retrieve vendors</documentation>
+            <input message="typens:vendorVendorListRequest"/>
+            <output message="typens:vendorVendorListResponse"/>
+        </operation>
+        <operation name="vendorVendorInfo">
+            <documentation>Retrieve vendor data</documentation>
+            <input message="typens:vendorVendorInfoRequest"/>
+            <output message="typens:vendorVendorInfoResponse"/>
+        </operation>
+    </portType>
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="vendorVendorList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="vendorVendorInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+</definitions>

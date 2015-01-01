@@ -39,17 +39,17 @@ class VES_VendorsAPI_TestController extends Mage_Core_Controller_Front_Action
             } else {
                 $oauthClient->setToken($_SESSION['token'], $_SESSION['secret']);
 
-                $resourceUrl = "$apiUrl/vendors/cd257f23a80d0665d82a164b5b40ccd7/products/253/categories";
+                $resourceUrl = "$apiUrl/vendors/cd257f23a80d0665d82a164b5b40ccd7/orders/82/items/1";
 
                 $productData = json_encode(array(
                     'type_id' => 'simple',
                     'approval'=>'2',
-                    'attribute_set_id' => 9,
+                    'attribute_set_id' => 4,
                     'sku' => 'hiep_customer_'.rand(1000,9999),
                     'weight' => 199,
                     'status' => 1,
                     'visibility' => 4,
-                    'name' => 'Simple Product 1',
+                    'name' => 'Simple Product 1new',
                     'description' => 'Simple Description',
                     'short_description' => 'Simple Short Description',
                     'price' => 99.95,
@@ -74,7 +74,7 @@ class VES_VendorsAPI_TestController extends Mage_Core_Controller_Front_Action
                 //var_dump($productData);exit;
 
 
-                $oauthClient->fetch($resourceUrl,$cData, 'POST', array('Content-Type' => 'application/json'));
+                $oauthClient->fetch($resourceUrl,array(), 'GET', array('Content-Type' => 'application/json'));
                 $productsList = json_decode($oauthClient->getLastResponse());
                 var_dump($productsList);
             }
@@ -86,7 +86,8 @@ class VES_VendorsAPI_TestController extends Mage_Core_Controller_Front_Action
     }
 
     public function getAction() {
-        $vendor = Mage::getModel('vendors/vendor')->load('4');
-        var_dump($vendor->getData());
+        $collection = Mage::getResourceModel('sales/order_collection');
+
+        echo $collection->count();
     }
 }

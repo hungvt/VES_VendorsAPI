@@ -20,6 +20,77 @@
                     <delete_product translate="title" module="vendorsapi">
                         <title>Delete vendor product</title>
                     </delete_product>
+
+                    <sales translate="title" module="vendorsapi">
+                        <title>Vendor Sales</title>
+                        <sort_order>100</sort_order>
+                        <order translate="title" module="vendorsapi">
+                            <title>Order</title>
+                            <change translate="title" module="vendorsapi">
+                                <title>Change status, add comments</title>
+                            </change>
+                            <info translate="title" module="vendorsapi">
+                                <title>Retrieve orders info</title>
+                            </info>
+                            <shipment translate="title" module="vendorsapi">
+                                <title>Order shipments</title>
+                                <create translate="title" module="vendorsapi">
+                                    <title>Create</title>
+                                </create>
+                                <comment translate="title" module="vendorsapi">
+                                    <title>Comments</title>
+                                </comment>
+                                <track translate="title" module="vendorsapi">
+                                    <title>Tracking</title>
+                                </track>
+                                <info translate="title" module="vendorsapi">
+                                    <title>Retrieve shipment info</title>
+                                </info>
+                                <send translate="title" module="vendorsapi">
+                                    <title>Send shipment info</title>
+                                </send>
+                            </shipment>
+                            <invoice translate="title" module="vendorsapi">
+                                <title>Order invoice</title>
+                                <create translate="title" module="vendorsapi">
+                                    <title>Create</title>
+                                </create>
+                                <comment translate="title" module="vendorsapi">
+                                    <title>Comments</title>
+                                </comment>
+                                <capture translate="title" module="vendorsapi">
+                                    <title>Capture</title>
+                                </capture>
+                                <void translate="title" module="vendorsapi">
+                                    <title>Void</title>
+                                </void>
+                                <cancel translate="title" module="vendorsapi">
+                                    <title>Cancel</title>
+                                </cancel>
+                                <info translate="title" module="vendorsapi">
+                                    <title>Retrieve invoice info</title>
+                                </info>
+                            </invoice>
+                            <creditmemo translate="title" module="vendorsapi">
+                                <title>Order credit memo</title>
+                                <create translate="title" module="vendorsapi">
+                                    <title>Create</title>
+                                </create>
+                                <comment translate="title" module="vendorsapi">
+                                    <title>Comments</title>
+                                </comment>
+                                <cancel translate="title" module="vendorsapi">
+                                    <title>Cancel</title>
+                                </cancel>
+                                <info translate="title" module="vendorsapi">
+                                    <title>Retrieve credit memo info</title>
+                                </info>
+                                <list translate="title" module="vendorsapi">
+                                    <title>Retrieve credit memo list</title>
+                                </list>
+                            </creditmemo>
+                        </order>
+                    </sales>
                 </vendor>
             </resources>
         </acl>
@@ -27,7 +98,7 @@
         <resources>
             <vendor translate="title" module="vendorsapi">
                 <title>Vendor API</title>
-                <model>vendorsapi/api_api</model>
+                <model>vendorsapi/vendor_api</model>
                 <acl>vendor</acl>
                 <methods>
                     <list translate="title" module="vendorsapi">
@@ -111,11 +182,353 @@
                     </filters_invalid>
                 </faults>
             </vendor>
+            <vendor_sales_order translate="title" module="vendorsapi">
+                <model>vendorsapi/vendor_order_api</model>
+                <title>Order API</title>
+                <acl>vendor/sales/order</acl>
+                <methods>
+                    <list translate="title" module="vendorsapi">
+                        <title>Retrieve list of orders by filters</title>
+                        <method>items</method>
+                        <acl>vendor/sales/order/info</acl>
+                    </list>
+                    <info translate="title" module="vendorsapi">
+                        <title>Retrieve order information</title>
+                        <acl>vendor/sales/order/info</acl>
+                    </info>
+                    <addComment translate="title" module="vendorsapi">
+                        <title>Add comment to order</title>
+                        <acl>vendor/sales/order/change</acl>
+                    </addComment>
+                    <hold translate="title" module="vendorsapi">
+                        <title>Hold order</title>
+                        <acl>vendor/sales/order/change</acl>
+                    </hold>
+                    <unhold translate="title" module="vendorsapi">
+                        <title>Unhold order</title>
+                        <acl>vendor/sales/order/change</acl>
+                    </unhold>
+                    <cancel translate="title" module="vendorsapi">
+                        <title>Cancel order</title>
+                        <acl>vendor/sales/order/change</acl>
+                    </cancel>
+                </methods>
+                <faults module="vendorsapi">
+                    <not_exists>
+                        <code>100</code>
+                        <message>Requested order not exists.</message>
+                    </not_exists>
+                    <filters_invalid>
+                        <code>101</code>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
+                    <data_invalid>
+                        <code>102</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                    <status_not_changed>
+                        <code>103</code>
+                        <message>Order status not changed. Details in error message.</message>
+                    </status_not_changed>
+                    <vendor_not_change>
+                        <code>104</code>
+                        <message>Vendor not access to update or delete this order(or invoice,shipment,creditmemo).</message>
+                    </vendor_not_change>
+                    <vendor_not_exists>
+                        <code>111</code>
+                        <message>Vendor not exists.</message>
+                    </vendor_not_exists>
+                    <not_is_order_owner>
+                        <code>112</code>
+                        <message>Vendor not is order owner.</message>
+                    </not_is_order_owner>
+                    <not_advanced_mode>
+                        <code>113</code>
+                        <message>Can not allow Api.</message>
+                    </not_advanced_mode>
+                    <method_not_support>
+                        <code>114</code>
+                    </method_not_support>
+                </faults>
+            </vendor_sales_order>
+            <vendor_sales_order_shipment translate="title" module="vendorsapi">
+                <title>Shipment API</title>
+                <model>vendorsapi/vendor_order_shipment_api</model>
+                <acl>vendor/sales/order/shipment</acl>
+                <methods>
+                    <list translate="title" module="vendorsapi">
+                        <title>Retrieve list of shipments by filters</title>
+                        <method>items</method>
+                        <acl>vendor/sales/order/shipment/info</acl>
+                    </list>
+                    <info translate="title" module="vendorsapi">
+                        <title>Retrieve shipment information</title>
+                        <acl>vendor/sales/order/shipment/info</acl>
+                    </info>
+                    <sendInfo translate="title" module="vendorsapi">
+                        <title>Send shipment info</title>
+                        <acl>vendor/sales/order/shipment/send</acl>
+                    </sendInfo>
+                    <create translate="title" module="vendorsapi">
+                        <title>Create new shipment for order</title>
+                        <acl>vendor/sales/order/shipment/create</acl>
+                    </create>
+                    <addComment translate="title" module="vendorsapi">
+                        <title>Add new comment to shipment</title>
+                        <acl>vendor/sales/order/shipment/comment</acl>
+                    </addComment>
+                    <addTrack translate="title" module="vendorsapi">
+                        <title>Add new tracking number</title>
+                        <acl>vendor/sales/order/shipment/track</acl>
+                    </addTrack>
+                    <removeTrack translate="title" module="vendorsapi">
+                        <title>Remove tracking number</title>
+                        <acl>vendor/sales/order/shipment/track</acl>
+                    </removeTrack>
+                    <getCarriers>
+                        <title>Retrieve list of allowed carriers for order</title>
+                    </getCarriers>
+                </methods>
+                <faults module="vendorsapi">
+                    <not_exists>
+                        <code>100</code>
+                        <message>Requested shipment not exists.</message>
+                    </not_exists>
+                    <filters_invalid>
+                        <code>101</code>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
+                    <data_invalid>
+                        <code>102</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                    <order_not_exists>
+                        <code>103</code>
+                        <message>Requested order not exists.</message>
+                    </order_not_exists>
+                    <track_not_exists>
+                        <code>104</code>
+                        <message>Requested tracking not exists.</message>
+                    </track_not_exists>
+                    <track_not_deleted>
+                        <code>105</code>
+                        <message>Tracking not deleted. Details in error message.</message>
+                    </track_not_deleted>
+                    <vendor_not_exists>
+                        <code>106</code>
+                        <message>Vendor not exists.</message>
+                    </vendor_not_exists>
+                    <not_is_order_owner>
+                        <code>107</code>
+                        <message>Vendor not is order owner.</message>
+                    </not_is_order_owner>
+                    <not_is_shipment_owner>
+                        <code>108</code>
+                        <message>Vendor not is shipment owner.</message>
+                    </not_is_shipment_owner>
+                    <vendor_not_change_shipment>
+                        <code>109</code>
+                        <message>Vendor not access to update or delete this shipment.</message>
+                    </vendor_not_change_shipment>
+                    <vendor_not_change>
+                        <code>110</code>
+                        <message>Vendor not access to update or delete this order.</message>
+                    </vendor_not_change>
+                    <not_advanced_mode>
+                        <code>113</code>
+                        <message>Can not allow Api.</message>
+                    </not_advanced_mode>
+                    <method_not_support>
+                        <code>114</code>
+                    </method_not_support>
+                </faults>
+            </vendor_sales_order_shipment>
+            <vendor_sales_order_invoice translate="title" module="vendorsapi">
+                <title>Invoice API</title>
+                <model>vendorsapi/vendor_order_invoice_api</model>
+                <acl>vendor/sales/order/invoice</acl>
+                <methods>
+                    <list translate="title" module="vendorsapi">
+                        <title>Retrieve list of invoices by filters</title>
+                        <method>items</method>
+                        <acl>vendor/sales/order/invoice/info</acl>
+                    </list>
+                    <info translate="title" module="vendorsapi">
+                        <title>Retrieve invoice information</title>
+                        <acl>vendor/sales/order/invoice/info</acl>
+                    </info>
+                    <create translate="title" module="vendorsapi">
+                        <title>Create new invoice for order</title>
+                        <acl>vendor/sales/order/invoice/create</acl>
+                    </create>
+                    <addComment translate="title" module="vendorsapi">
+                        <title>Add new comment to shipment</title>
+                        <acl>vendor/sales/order/invoice/comment</acl>
+                    </addComment>
+                    <capture translate="title" module="vendorsapi">
+                        <title>Capture invoice</title>
+                        <acl>vendor/sales/order/invoice/capture</acl>
+                    </capture>
+                    <void translate="title" module="vendorsapi">
+                        <title>Void invoice</title>
+                        <acl>vendor/sales/order/invoice/void</acl>
+                    </void>
+                    <cancel translate="title" module="vendorsapi">
+                        <title>Cancel invoice</title>
+                        <acl>vendor/sales/order/invoice/cancel</acl>
+                    </cancel>
+                </methods>
+                <faults module="vendorsapi">
+                    <not_exists>
+                        <code>100</code>
+                        <message>Requested invoice does not exist.</message>
+                    </not_exists>
+                    <invalid_filter>
+                        <code>101</code>
+                        <message>Invalid filter given. Details in error message.</message>
+                    </invalid_filter>
+                    <data_invalid>
+                        <code>102</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                    <order_not_exists>
+                        <code>103</code>
+                        <message>Requested order not exists.</message>
+                    </order_not_exists>
+                    <status_not_changed>
+                        <code>104</code>
+                        <message>Invoice status not changed</message>
+                    </status_not_changed>
+                    <vendor_not_exists>
+                        <code>106</code>
+                        <message>Vendor not exists.</message>
+                    </vendor_not_exists>
+                    <not_is_order_owner>
+                        <code>107</code>
+                        <message>Vendor not is order owner.</message>
+                    </not_is_order_owner>
+                    <not_is_invoice_owner>
+                        <code>108</code>
+                        <message>Vendor not is invoice owner.</message>
+                    </not_is_invoice_owner>
+                    <vendor_not_change_invoice>
+                        <code>109</code>
+                        <message>Vendor not access to update or delete this invoice.</message>
+                    </vendor_not_change_invoice>
+                    <vendor_not_change>
+                        <code>110</code>
+                        <message>Vendor not access to update or delete this order.</message>
+                    </vendor_not_change>
+                    <not_advanced_mode>
+                        <code>113</code>
+                        <message>Can not allow Api.</message>
+                    </not_advanced_mode>
+                    <method_not_support>
+                        <code>114</code>
+                    </method_not_support>
+                </faults>
+            </vendor_sales_order_invoice>
+            <vendor_sales_order_creditmemo>
+                <title>Credit memo API</title>
+                <model>vendorsapi/vendor_order_creditmemo_api</model>
+                <acl>vendor/sales/order/creditmemo</acl>
+                <methods>
+                    <list translate="title" module="vendorsapi">
+                        <title>Retrieve list of credit memos by filters</title>
+                        <method>items</method>
+                        <acl>vendor/sales/order/creditmemo/list</acl>
+                    </list>
+                    <info translate="title" module="vendorsapi">
+                        <title>Retrieve credit memo information</title>
+                        <acl>vendor/sales/order/creditmemo/info</acl>
+                    </info>
+                    <create translate="title" module="vendorsapi">
+                        <title>Create new credit memo for order</title>
+                        <acl>vendor/sales/order/creditmemo/create</acl>
+                    </create>
+                    <addComment translate="title" module="vendorsapi">
+                        <title>Add new comment to credit memo</title>
+                        <acl>vendor/sales/order/creditmemo/comment</acl>
+                    </addComment>
+                    <cancel translate="title" module="vendorsapi">
+                        <title>Cancel credit memo</title>
+                        <acl>vendor/sales/order/creditmemo/cancel</acl>
+                    </cancel>
+                </methods>
+                <faults module="vendorsapi">
+                    <not_exists>
+                        <code>100</code>
+                        <message>Requested credit memo does not exist</message>
+                    </not_exists>
+                    <invalid_filter>
+                        <code>101</code>
+                        <message>Invalid filter given. Details in error message</message>
+                    </invalid_filter>
+                    <data_invalid>
+                        <code>102</code>
+                        <message>Invalid data given. Details in error message</message>
+                    </data_invalid>
+                    <order_not_exists>
+                        <code>103</code>
+                        <message>Requested order does not exist</message>
+                    </order_not_exists>
+                    <status_not_changed>
+                        <code>104</code>
+                        <message>Credit memo status not changed</message>
+                    </status_not_changed>
+                    <cannot_refund_to_storecredit>
+                        <code>105</code>
+                        <message>Money can not be refunded to the store credit account as order was created by guest</message>
+                    </cannot_refund_to_storecredit>
+                    <cannot_create_creditmemo>
+                        <code>106</code>
+                        <message>Credit memo for requested order can not be created.</message>
+                    </cannot_create_creditmemo>
+                    <vendor_not_exists>
+                        <code>106</code>
+                        <message>Vendor not exists.</message>
+                    </vendor_not_exists>
+                    <not_is_order_owner>
+                        <code>107</code>
+                        <message>Vendor not is order owner.</message>
+                    </not_is_order_owner>
+                    <not_is_creditmemo_owner>
+                        <code>108</code>
+                        <message>Vendor not is creditmemo owner.</message>
+                    </not_is_creditmemo_owner>
+                    <vendor_not_change_creditmemo>
+                        <code>109</code>
+                        <message>Vendor not access to update or delete this creditmemo.</message>
+                    </vendor_not_change_creditmemo>
+                    <vendor_not_change>
+                        <code>110</code>
+                        <message>Vendor not access to update or delete this order.</message>
+                    </vendor_not_change>
+                    <not_advanced_mode>
+                        <code>113</code>
+                        <message>Can not allow Api.</message>
+                    </not_advanced_mode>
+                    <method_not_support>
+                        <code>114</code>
+                    </method_not_support>
+                </faults>
+            </vendor_sales_order_creditmemo>
         </resources>
+
+        <resources_alias>
+            <vendor_order>vendor_sales_order</vendor_order>
+            <vendor_order_shipment>vendor_sales_order_shipment</vendor_order_shipment>
+            <vendor_order_invoice>vendor_sales_order_invoice</vendor_order_invoice>
+            <vendor_order_creditmemo>vendor_sales_order_creditmemo</vendor_order_creditmemo>
+        </resources_alias>
 
         <v2>
             <resources_function_prefix>
                 <vendor>vendorVendor</vendor>
+                <vendor_order>vendorSalesOrder</vendor_order>
+                <vendor_order_shipment>vendorSalesOrderShipment</vendor_order_shipment>
+                <vendor_order_invoice>vendorSalesOrderInvoice</vendor_order_invoice>
+                <vendor_order_creditmemo>vendorSalesOrderCreditmemo</vendor_order_creditmemo>
             </resources_function_prefix>
         </v2>
     </api>

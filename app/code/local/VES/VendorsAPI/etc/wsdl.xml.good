@@ -86,7 +86,7 @@
     <message name="vendorVendorDeleteProductResponse">
         <part name="result" type="xsd:int"/>
     </message>
-
+    <!--message for sale order-->
     <message name="vendorSalesOrderListRequest">
         <part name="sessionId" type="xsd:string" />
         <part name="vendorApiKey" type="xsd:string"/>
@@ -327,7 +327,7 @@
         <part name="result" type="xsd:boolean" />
     </message>
 
-
+    <!-- PORT TYPE-->
     <portType name="{{var wsdl.handler}}PortType">
         <operation name="vendorVendorList">
             <documentation>Retrieve vendors</documentation>
@@ -355,6 +355,7 @@
             <output message="typens:vendorVendorDeleteProductResponse"/>
         </operation>
 
+        <!--for sales order-->
         <operation name="vendorSalesOrderList">
             <documentation>Retrieve list of vendor orders by filters</documentation>
             <input message="typens:vendorSalesOrderListRequest" />
@@ -545,6 +546,7 @@
             </output>
         </operation>
 
+        <!--for sales order-->
         <operation name="vendorSalesOrderList">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
             <input>

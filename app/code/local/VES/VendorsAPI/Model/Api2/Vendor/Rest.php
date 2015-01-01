@@ -2,6 +2,9 @@
 
 abstract class VES_VendorsAPI_Model_Api2_Vendor_Rest extends VES_VendorsAPI_Model_Api2_Vendor
 {
+    protected $_attributes_not_allowed_collection = array(
+        'ves_api_key','credit'
+    );
     /**
      *
      * Vendor create not support
@@ -38,11 +41,20 @@ abstract class VES_VendorsAPI_Model_Api2_Vendor_Rest extends VES_VendorsAPI_Mode
      */
     protected function _getCollectionForRetrieve()
     {
+        $attributes_available = array_keys(
+            $this->getAvailableAttributes($this->getUserType(), Mage_Api2_Model_Resource::OPERATION_ATTRIBUTE_READ)
+        );
+        foreach($this->_attributes_not_allowed_collection as $att) {
+            //Mage::log('...'.in_array('credit1',$attributes_available));
+            if(in_array($att,$attributes_available)) {
+                $key = array_search($att,$attributes_available);
+                unset($attributes_available[$key]);
+            }
+        }
+        Mage::log($attributes_available);
         /** @var $collection Mage_Customer_Model_Resource_Customer_Collection */
         $collection = Mage::getResourceModel('vendors/vendor_collection');
-        $collection->addAttributeToSelect(array_keys(
-            $this->getAvailableAttributes($this->getUserType(), Mage_Api2_Model_Resource::OPERATION_ATTRIBUTE_READ)
-        ));
+        $collection->addAttributeToSelect($attributes_available);
 
         $this->_applyCollectionModifiers($collection);
         return $collection;

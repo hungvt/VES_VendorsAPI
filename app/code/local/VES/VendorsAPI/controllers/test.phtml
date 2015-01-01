@@ -1,0 +1,170 @@
+<table class="confluenceTable">
+    <tbody>
+    <tr>
+        <th class="confluenceTh"> Name</th>
+        <th class="confluenceTh"> Description</th>
+        <th class="confluenceTh"> Required</th>
+        <th class="confluenceTh"> Type</th>
+        <th class="confluenceTh"> Example Value</th>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> qty</td>
+        <td class="confluenceTd"> Quantity of stock items for the current product</td>
+        <td class="confluenceTd"> optional</td>
+        <td class="confluenceTd"> string</td>
+        <td class="confluenceTd"> 99</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> min_qty</td>
+        <td class="confluenceTd"> Quantity for stock items to become out of stock</td>
+        <td class="confluenceTd"> optional</td>
+        <td class="confluenceTd"> string</td>
+        <td class="confluenceTd"> 5</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_min_qty</td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Qty for Item's Status to
+            Become Out of Stock option
+        </td>
+        <td class="confluenceTd"> optional</td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> is_qty_decimal</td>
+        <td class="confluenceTd"> Choose whether the product can be sold using decimals (e.g., you can buy 2.5
+            product)
+        </td>
+        <td class="confluenceTd"> optional</td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> backorders <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Defines whether the customer can place the order for products that are out of stock at
+            the moment. <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 0</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_backorders <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Backorders option</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> min_sale_qty <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Minimum number of items in the shopping cart to be sold <br
+                class="atl-forced-newline"></td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> string</td>
+        <td class="confluenceTd"> 10</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_min_sale_qty <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Minimum Qty Allowed in
+            Shopping Cart option
+        </td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> max_sale_qty <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Maximum number of items in the shopping cart to be sold <br
+                class="atl-forced-newline"></td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> string</td>
+        <td class="confluenceTd"> 50</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_max_sale_qty <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Maximum Qty Allowed in
+            Shopping Cart option
+        </td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> is_in_stock <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Defines whether the product is available for selling.</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> notify_stock_qty <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> The number of inventory items below which the customer will be notified</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> string</td>
+        <td class="confluenceTd"> 5</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_notify_stock_qty <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Notify for Quantity Below
+            option
+        </td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> manage_stock <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether to view and specify the product quantity and availability and whether
+            the product is in stock management.
+        </td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_manage_stock <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Manage Stock option</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_qty_increments <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Qty Increments option</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> qty_increments <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> The product quantity increment value</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> string</td>
+        <td class="confluenceTd"> 3</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> use_config_enable_qty_inc <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Choose whether the Config settings will be applied for the Enable Qty Increments
+            option
+        </td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 1</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> enable_qty_increments <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Defines whether the customer can add products only in increments to the shopping
+            cart
+        </td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 0</td>
+    </tr>
+    <tr>
+        <td class="confluenceTd"> is_decimal_divided <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> Defines whether the stock items can be divided into multiple boxes for shipping</td>
+        <td class="confluenceTd"> optional <br class="atl-forced-newline"></td>
+        <td class="confluenceTd"> int</td>
+        <td class="confluenceTd"> 0</td>
+    </tr>
+    </tbody>
+</table>

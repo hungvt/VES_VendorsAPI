@@ -63,4 +63,8 @@ class VES_VendorsAPI_Model_Api2_Vendor extends Mage_Api2_Model_Resource
         }
         return $store;
     }
+
+    public function getVendorApiKey() {
+        return $this->getRequest()->getParam('api');
+    }
 }
